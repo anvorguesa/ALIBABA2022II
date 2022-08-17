@@ -35,7 +35,7 @@ namespace alibabaproy2022_v2.Controllers
             var productos = from o in _context.DataProductos select o;
             //SELECT * FROM t_productos -> &
             if(!String.IsNullOrEmpty(searchString)){
-                productos = productos.Where(s => s.Name.Contains(searchString)); //Algebra de bool
+                productos = productos.Where(s => s.Keywords.Contains(searchString)); //Algebra de bool
                 // & + WHERE name like '%ABC%'
             }
             productos = productos.Where(s => s.Status.Contains("Activo"));
