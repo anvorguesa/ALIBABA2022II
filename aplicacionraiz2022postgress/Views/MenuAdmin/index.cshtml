@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "";
+}
+<link rel="stylesheet" href="~/css/MenuAd.css" asp-append-version="true" />
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center" >
+    <div>
+        <br><br><br>
+    </div>
+    <div class="Menu">
+        <h1 class="display-4"><b>Menu Administrador</b></h1>
+        <br> <br> <br> <br>
+        <br><br><br>
+        <a class="btn btn-dark btn-lg btn-block" asp-controller="MenuAdmin" asp-action="Menureclamos">Lista de Contacto</a>
+        <br><br><br>
+        <a class="btn btn-dark btn-lg btn-block" asp-controller="ListaVentas" asp-action="index">Lista de Ventas</a>
+        <br><br><br>
+ 
+    </div>
+</div>

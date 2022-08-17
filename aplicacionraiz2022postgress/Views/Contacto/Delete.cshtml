@@ -1,0 +1,68 @@
+@model aplicacionraiz2022postgress.Models.Contacto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Elimiar</h1>
+
+<h3>¿Estas seguro que deseas eliminar?</h3>
+<div>
+    <h4>Produto</h4>
+    <hr />
+    
+   <table class="table">
+    <thead>
+        <tr>
+               <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model =>model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comment)
+            </th>
+            <th>     
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+     <tr>
+           <td>
+                @Html.DisplayFor(model => model.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.subject)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.comment)
+            </td>
+
+  
+            
+            
+        </tr>
+
+    </tbody>
+</table>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Indexadmin">Back to List</a>
+    </form>
+</div>

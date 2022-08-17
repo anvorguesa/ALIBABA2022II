@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "";
+}
+<h1>@ViewData["Title"]</h1>
+<div>
+        <br><br><br>
+    </div>
+    <a class="btn btn-info" asp-controller="MenuAdmin" asp-action="index">Volver al Menu Administrador</a>
+<div class="text-center">
+
+    <h3 class="display-4"><b>MENU DE CONTACTO</b></h3>
+    <br>
+    <br>
+    <br>
+   
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="Contacto" asp-action="Indexadmin"><b>Lista Central</b></a>
+
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="Contacto" asp-action="IndexadminResueltos"><b>Lista de Contacto Resueltos</b></a>
+    <br>
+    <br>
+    <br>
+
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="Contacto" asp-action="IndexadminSinResolver"><b>Lista de Contacto Sin Resolver</b></a>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="Contacto" asp-action="IndexadminPendientes"><b>Lista de Contacto Pendientes</b></a>
+
+    <br>
+    <br>
+    <br>
+</div>

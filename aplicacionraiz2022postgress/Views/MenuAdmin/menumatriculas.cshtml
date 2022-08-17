@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "";
+}
+<link rel="stylesheet" href="~/css/MenuPagos.css" asp-append-version="true" />
+<h1>@ViewData["Title"]</h1>
+<body>
+<a class="btn btn-info" asp-controller="MenuAdmin" asp-action="index">Volver al Menu Administrador</a>
+<div class="text-center">
+    <h2 class="display-4"><b>Menu Pagos Matriculas</b></h2>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="UsersMatricula" asp-action="vistaCentral"><b>Lista Central</b></a>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="UsersMatricula" asp-action="vistaPagados">PAGADOS</b></a>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="UsersMatricula" asp-action="vistasinResolver">SIN RESOLVER</b></a>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="UsersMatricula" asp-action="vistaPendiente">PENDIENTE</b></a>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-dark btn-lg btn-block" asp-area="" asp-controller="UsersMatricula" asp-action="vistaSuspendido">SUSPENDIDO</b></a>
+</div>
+</body> 
