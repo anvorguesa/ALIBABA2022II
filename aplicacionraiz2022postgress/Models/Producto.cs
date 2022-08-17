@@ -12,7 +12,7 @@ namespace aplicacionraiz2022postgress.Models
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column("id")]
-        
+
         public int? Id { get; set; }
         [Column("Name")]
         public string? Name { get; set; }
@@ -20,6 +20,8 @@ namespace aplicacionraiz2022postgress.Models
         public string? Clase { get; set; }
         [Column("Subclase")]
         public string? Subclase { get; set; }
+        [Column("Keywords")]
+        public string? Keywords { get; set; }
         [Column("Estado")]
         public string? Estado { get; set; }
         [Column("Descripcion")]
@@ -32,6 +34,6 @@ namespace aplicacionraiz2022postgress.Models
         public String? ImageName { get; set; }
         [Column("Status")]
         public String? Status { get; set; }
-        
+
     }
 }

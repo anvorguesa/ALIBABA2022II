@@ -43,6 +43,27 @@
                 <input asp-for="Subclase" class="form-control" />
                 <span asp-validation-for="Subclase" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Keywords" class="control-label"></label>
+                <input asp-for="Keywords" class="form-control" />
+                <span asp-validation-for="Keywords" class="text-danger"></span>
+            </div>
+
+            <p>--------------------------</p>
+               <div class="form-group">
+                <label asp-for="Estado" class="control-label"></label>
+                <br>
+                <br>
+                <input asp-for="Estado" type="radio" value="Activo">
+                <label asp-for="Estado" for="html">Nuevo</label><br>
+                <br>
+                <input asp-for="Estado" type="radio" value="Inactivo">
+                <label asp-for="Estado" for="html">Antiguo</label><br>
+                <br>
+            </div>
+            <p>--------------------------</p>
+            
             <div class="form-group">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
