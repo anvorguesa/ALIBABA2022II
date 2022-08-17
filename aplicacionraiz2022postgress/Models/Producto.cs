@@ -32,6 +32,8 @@ namespace aplicacionraiz2022postgress.Models
         public Decimal? PorcentajeDescuento { get; set; }
         [Column("ImageName")]
         public String? ImageName { get; set; }
+        [Column("Image3D")]
+        public String? Image3D { get; set; }
         [Column("Status")]
         public String? Status { get; set; }
 
