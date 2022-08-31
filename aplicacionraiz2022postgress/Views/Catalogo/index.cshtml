@@ -7,6 +7,55 @@
   <div class="container">
     <h1>@ViewData["Message"]</h1>
     <div class="row">
+      <div class="col-3">
+        <form asp-controller="Catalogo" asp-action="index">
+          <div class="form-outline">
+            <input type="text" id="searchString" class="form-control" placeholder="Buscar" aria-label="searchString" name="searchString"/>
+          </div>
+              <p>--------------------------</p>
+              <div class="form-group">
+                <label class="control-label">Clase</label>
+                <br>
+                <input type="radio" value="Dormitorio" aria-label="searchString2" name="searchString2">
+                <label  for="html">Dormitorio</label><br>
+                <br>
+                <input  type="radio" value="Escritorio" aria-label="searchString2" name="searchString2">
+                <label  for="html">Escritorio</label><br>
+                <br>
+                <input  type="radio" value="Salas" aria-label="searchString2" name="searchString2">
+                <label  for="html">Salas</label><br>
+                <br>
+                <input  type="radio" value="Adornos" aria-label="searchString2" name="searchString2">
+                <label  for="html">Adornos</label><br>
+                <br>
+            </div>
+            <p>--------------------------</p>
+            <p>--------------------------</p>
+              <div class="form-group">
+                <label class="control-label">Estado</label>
+                <br>
+                <input type="radio" value="Nuevo" aria-label="searchString3" name="searchString3">
+                <label  for="html">Nuevo</label><br>
+                <br>
+                <input  type="radio" value="Antiguo" aria-label="searchString3" name="searchString3">
+                <label  for="html">Antiguo</label><br>
+                <br>
+            </div>
+            <p>--------------------------</p>
+            <p>--------------------------</p>
+              <div class="form-group">
+                <label class="control-label">PRECIOS</label>
+                <br>
+                Precio maximo<input type="number" id="searchString4" class="form-control" aria-label="searchString4" name="searchString4" min="1"/>
+                <br>
+                Precio minimo<input type="number" id="searchString5" class="form-control" aria-label="searchString5" name="searchString5" min="1"/>
+                <br>
+            </div>
+            <p>--------------------------</p>
+            <input type="submit" value="Buscar" class="btn btn-primary "/>   
+        </form>
+
+      </div>
       <div class="col">
         <div id="products" class="mb-3">
           <div class="row">
@@ -15,7 +64,7 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="card-img-actions">
-                    <img class="img-responsive" width="370" height="350"
+                    <img class="img-responsive" width="250" height="250"
                        src="@item.ImageName" alt="@item.ImageName"  />
                   </div>
                 </div>

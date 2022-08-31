@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
 
-namespace alibabaproy2022_v2.Controllers
+namespace aplicacionraiz2022postgress.Controllers
 {
     public class ContactoController: Controller
     {
@@ -60,80 +60,40 @@ namespace alibabaproy2022_v2.Controllers
         return View(await items.OrderByDescending(w => w.Id).ToListAsync());
         }
 
-
-
-        // GET: Produtos/Delete/5
-
         public async Task<IActionResult> Delete(int? id)
 
         {
 
             if (id == null)
-
             {
-
                 return NotFound();
-
             }
-
-
 
             var produto = await _context.DataContactos
-
                 .FirstOrDefaultAsync(m => m.Id == id);
-
             if (produto == null)
-
             {
-
                 return NotFound();
-
             }
-
-
-
             return View(produto);
 
         }
-
-
-
-        // POST: Produtos/Delete/5
-
         [HttpPost, ActionName("Delete")]
-
         [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> DeleteConfirmed(int id)
-
         {
-
             var produto = await _context.DataContactos.FindAsync(id);
-
             _context.DataContactos.Remove(produto);
-
             await _context.SaveChangesAsync();
-
-
-
             return RedirectToAction(nameof(Indexadmin));
 
         }
-
-
-
-
-
-
-
-
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             var contacto = await _context.DataContactos.FindAsync(id);
             if (contacto == null)
             {
@@ -141,7 +101,6 @@ namespace alibabaproy2022_v2.Controllers
             }
             return View(contacto);
         }
-    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,name,email,numero,subject,comment,AnotacionAdmin,Status")] Contacto contacto)

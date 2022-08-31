@@ -10,7 +10,7 @@ using aplicacionraiz2022postgress.Data;
 using aplicacionraiz2022postgress.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace alibabaproy2022_v2.Controllers
+namespace aplicacionraiz2022postgress.Controllers
 {
     public class CatalogoController : Controller
     {
@@ -29,15 +29,34 @@ namespace alibabaproy2022_v2.Controllers
     
         }
 
-        public async Task<IActionResult> Index(string? searchString)
+        public async Task<IActionResult> Index(string? searchString,string? searchString1,string? searchString2,string? searchString3,int? searchString4,int? searchString5,string? searchString6,string? searchString7,string? searchString8)
         {
             
             var productos = from o in _context.DataProductos select o;
             //SELECT * FROM t_productos -> &
-            if(!String.IsNullOrEmpty(searchString)){
-                productos = productos.Where(s => s.Keywords.Contains(searchString)); //Algebra de bool
-                // & + WHERE name like '%ABC%'
+            if(!String.IsNullOrEmpty(searchString )){
+                productos = productos.Where(s => s.Keywords.Contains(searchString)); 
             }
+            if(String.IsNullOrEmpty(searchString2 )){
+                 
+            }else{
+                productos = productos.Where(s => s.Clase.Contains(searchString2));
+            }
+            if(String.IsNullOrEmpty(searchString3 )){
+                 
+            }else{
+                productos = productos.Where(s => s.Estado.Contains(searchString3));
+            }
+            if(searchString4 == null && searchString5 == null){
+
+            }else if(searchString4 == null && searchString5 >0){
+                productos = productos.Where(s => s.Precio>=searchString5);
+            }else if(searchString4 >0 && searchString5 == null){
+                productos = productos.Where(s => s.Precio<=searchString4);
+            }else{
+                productos = productos.Where(s => s.Precio>=searchString4 && s.Precio<=searchString5);
+            }
+
             productos = productos.Where(s => s.Status.Contains("Activo"));
             return View(await productos.ToListAsync());
         }

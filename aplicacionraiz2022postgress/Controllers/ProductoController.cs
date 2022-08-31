@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using aplicacionraiz2022postgress.Data;
 using aplicacionraiz2022postgress.Models;
 
-namespace appcomics.Controllers
+namespace aplicacionraiz2022postgress.Controllers
 {
     public class ProductoController : Controller
     {

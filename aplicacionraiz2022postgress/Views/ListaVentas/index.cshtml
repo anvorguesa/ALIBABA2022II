@@ -1,0 +1,56 @@
+@model dynamic;
+@using System.Collections.Generic;
+
+@{
+    ViewData["Title"] = "Lista de Ventas";
+    IEnumerable<aplicacionraiz2022postgress.Models.Pago> listItemsPago = new List<Pago>();
+    listItemsPago = @Model.elementosDatos;
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().NombreTarjeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().NumeroTarjeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().MontoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().UserID)
+            </th>
+            <th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Pago item in Model.elementosDatos) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreTarjeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroTarjeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+               <a class="btn btn-info" asp-controller="ListaVentas" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+        </tr>
+}
+    </tbody>
+</table>
