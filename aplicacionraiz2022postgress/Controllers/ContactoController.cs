@@ -28,11 +28,15 @@ namespace aplicacionraiz2022postgress.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Contacto objContacto)
+        public async Task<IActionResult> Create([Bind("Id,name,email,numero,subject,comment,AnotacionAdmin,Status")] Contacto contacto)
         {
-            _context.Add(objContacto);
-            _context.SaveChanges();
+            if (ModelState.IsValid){
+            _context.Add(contacto);
+            await _context.SaveChangesAsync();
             ViewData["Message"] = "Se registro el contacto";
+            return View("Index");
+            }
+            ViewData["Message"] = "Complete todo el formulario";
             return View("Index");
         }
 

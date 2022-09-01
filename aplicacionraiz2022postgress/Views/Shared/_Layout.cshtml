@@ -107,6 +107,24 @@
     <a class="text-white" href="https://github.com/DiegoOcholocos/ProyProgra1" >Derechos Reservados Grupo Rosado</a>
   </div>
 </footer>
+<script type="text/javascript">
+    function stoppedTyping(){
+        if(this.value.length > 0) { 
+            document.getElementById('start_button').disabled = false; 
+        } else { 
+            document.getElementById('start_button').disabled = true;
+        }
+    }
+    function verify(){
+        if myText is empty{
+            alert "Put some text in there!"
+            return
+        }
+        else{
+            do button functionality
+        }
+    }
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

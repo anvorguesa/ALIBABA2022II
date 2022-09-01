@@ -10,23 +10,23 @@
 
     <form asp-controller="Contacto" asp-action="Create">
         <label asp-for="name" class="form-label">Nombre</label>
-        <input asp-for="name" class="form-control form-control-sm" type="text" placeholder="Escribe un Nombre" aria-label=".form-control-sm" />
+        <input asp-for="name" id="name" class="form-control form-control-sm" type="text" placeholder="Escribe un Nombre" aria-label=".form-control-sm" id="myText"/>
         <br>
         <label asp-for="email" class="control-label">Correo</label>
-        <input asp-for="email" class="form-control" placeholder="Escribe tu Correo"/>
+        <input asp-for="email" class="form-control" placeholder="Escribe tu Correo" id="myText"/>
         <br>
         <label asp-for="numero" class="control-label">Numero</label>
-        <input asp-for="numero" class="form-control" Placeholder="Escribe tu Numero"/>
+        <input asp-for="numero" class="form-control" Placeholder="Escribe tu Numero" id="myText"/>
         <br>
         <label asp-for="subject" class="control-label">Asunto</label>
-        <input asp-for="subject" class="form-control" Placeholder="Escribe tu Asunto"/>
+        <input asp-for="subject" class="form-control" Placeholder="Escribe tu Asunto" id="myText"/>
         <br>
         <label asp-for="comment" class="control-label">Comentario</label>
-        <input asp-for="comment" class="form-control" Placeholder="Escribe tu Comentario"/>
+        <input asp-for="comment" class="form-control" Placeholder="Escribe tu Comentario" />
         <br>
         <br>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Enviar</button> 
+        <button type="submit" class="btn btn-primary" id="start_button">Enviar</button> 
         </div>              
     </form>
     <h1>@ViewData["Message"]</h1>
