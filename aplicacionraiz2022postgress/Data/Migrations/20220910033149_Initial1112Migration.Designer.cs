@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using aplicacionraiz2022postgress.Data;
@@ -11,9 +12,10 @@ using aplicacionraiz2022postgress.Data;
 namespace aplicacionraiz2022postgress.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220910033149_Initial1112Migration")]
+    partial class Initial1112Migration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +69,7 @@ namespace aplicacionraiz2022postgress.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_contacto");
+                    b.ToTable("t_Contacto");
                 });
 
             modelBuilder.Entity("aplicacionraiz2022postgress.Models.Producto", b =>

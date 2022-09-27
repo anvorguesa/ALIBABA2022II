@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace aplicacionraiz2022postgress.Models
 {
-    [Table("t_Contacto")]
+    [Table("t_contacto")]
     public class Contacto
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
