@@ -1,0 +1,49 @@
+@using System.Data
+@model DataTable
+
+@{
+    ViewData["Title"] = "DATA DE PRODUCTOS";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+                ID
+            </td>
+        </tr>  
+    </thead>  
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                <td>@row["id"]</td>
+            </tr>
+        }
+    </tbody>
+        
+
+</table>
+      <div class="col">
+        <div id="products" class="mb-3">
+          <div class="row">
+            @foreach (DataRow row in Model.Rows) {
+            <div class="col-sm-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="card-img-actions">
+                    <img class="img-responsive" width="250" height="250"
+                       src="@row["ImageName"]" alt="@row["ImageName"]"  />
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title" style="color:red">@row["Name"]</h4>
+                  <p class="card-text" style="font-size: 24px;font-weight: bold;color:red">S/. @row["Precio"]       
+                  <p class="card-text" style="font-size: 16px;color: #949794;font-weight: bold;text-decoration-line: line-through;"> Precio Original: S/. @row["PorcentajeDescuento"]</p></p>
+                </div>
+              </div>
+            </div>
+            }
+         </div>
+        </div>
+      </div>
