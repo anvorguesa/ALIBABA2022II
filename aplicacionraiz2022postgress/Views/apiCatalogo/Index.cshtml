@@ -4,26 +4,40 @@
 @{
     ViewData["Title"] = "DATA DE PRODUCTOS";
 }
+  <div class="container">
+    <h1>@ViewData["Message"]</h1>
+    <div class="row">
+      <div class="col-3">
+        <form asp-controller="apiCatalogo" asp-action="Index">
+              <p>--------------------------</p>
+              <div class="form-group">
+                <label class="control-label">Clase</label>
+                <br>
+                <input type="radio" value="Dormitorio" aria-label="Clase" name="Clase">
+                <label  for="html">Dormitorio</label><br>
+                <br>
+                <input  type="radio" value="Escritorio" aria-label="Clase" name="Clase">
+                <label  for="html">Escritorio</label><br>
+                <br>
+                <input  type="radio" value="Salas" aria-label="Clase" name="Clase">
+                <label  for="html">Salas</label><br>
+                <br>
+                <input  type="radio" value="Adornos" aria-label="Clase" name="Clase">
+                <label  for="html">Adornos</label><br>
+                <br>
+            </div>
+            <p>--------------------------</p>
+            <p>--------------------------</p>
+            <div class="form-outline">
+              <input type="text" id="Subclase" class="form-control" placeholder="Buscar" aria-label="Subclase" name="Subclase"/>
+            </div>
+            <p>--------------------------</p>
+            <input type="submit" value="Buscar" class="btn btn-primary "/>   
+        </form>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                ID
-            </td>
-        </tr>  
-    </thead>  
-    <tbody>
-        @foreach (DataRow row in Model.Rows)
-        {
-            <tr>
-                <td>@row["id"]</td>
-            </tr>
-        }
-    </tbody>
-        
+      </div>
 
-</table>
+
       <div class="col">
         <div id="products" class="mb-3">
           <div class="row">
@@ -37,9 +51,12 @@
                   </div>
                 </div>
                 <div class="card-body">
+                  <h4 class="card-title" style="color:red">@row["id"]</h4>
                   <h4 class="card-title" style="color:red">@row["Name"]</h4>
                   <p class="card-text" style="font-size: 24px;font-weight: bold;color:red">S/. @row["Precio"]       
                   <p class="card-text" style="font-size: 16px;color: #949794;font-weight: bold;text-decoration-line: line-through;"> Precio Original: S/. @row["PorcentajeDescuento"]</p></p>
+                  <a class="btn btn-info" asp-action="Add" asp-route-id="@row["id"]">Agregar al Carrito</a>
+                  <a class="btn btn-info" asp-action="Details" asp-route-id="@row["id"]">Detalles</a>
                 </div>
               </div>
             </div>
@@ -47,3 +64,5 @@
          </div>
         </div>
       </div>
+    </div>
+  </div>

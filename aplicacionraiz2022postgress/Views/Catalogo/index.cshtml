@@ -1,79 +1,62 @@
-@model IEnumerable<aplicacionraiz2022postgress.Models.Producto>
-@{
-    ViewData["Title"] = "Catalogo";  
-}
+@using System.Data
+@model DataTable
 
-<h1>@ViewData["Title"]</h1>
+@{
+    ViewData["Title"] = "DATA DE PRODUCTOS";
+}
   <div class="container">
     <h1>@ViewData["Message"]</h1>
     <div class="row">
       <div class="col-3">
-        <form asp-controller="Catalogo" asp-action="index">
-          <div class="form-outline">
-            <input type="text" id="searchString" class="form-control" placeholder="Buscar" aria-label="searchString" name="searchString"/>
-          </div>
+        <form asp-controller="Catalogo" asp-action="Index">
               <p>--------------------------</p>
               <div class="form-group">
                 <label class="control-label">Clase</label>
                 <br>
-                <input type="radio" value="Dormitorio" aria-label="searchString2" name="searchString2">
+                <input type="radio" value="Dormitorio" aria-label="Clase" name="Clase">
                 <label  for="html">Dormitorio</label><br>
                 <br>
-                <input  type="radio" value="Escritorio" aria-label="searchString2" name="searchString2">
+                <input  type="radio" value="Escritorio" aria-label="Clase" name="Clase">
                 <label  for="html">Escritorio</label><br>
                 <br>
-                <input  type="radio" value="Salas" aria-label="searchString2" name="searchString2">
+                <input  type="radio" value="Salas" aria-label="Clase" name="Clase">
                 <label  for="html">Salas</label><br>
                 <br>
-                <input  type="radio" value="Adornos" aria-label="searchString2" name="searchString2">
+                <input  type="radio" value="Adornos" aria-label="Clase" name="Clase">
                 <label  for="html">Adornos</label><br>
                 <br>
             </div>
             <p>--------------------------</p>
             <p>--------------------------</p>
-              <div class="form-group">
-                <label class="control-label">Estado</label>
-                <br>
-                <input type="radio" value="Nuevo" aria-label="searchString3" name="searchString3">
-                <label  for="html">Nuevo</label><br>
-                <br>
-                <input  type="radio" value="Antiguo" aria-label="searchString3" name="searchString3">
-                <label  for="html">Antiguo</label><br>
-                <br>
-            </div>
-            <p>--------------------------</p>
-            <p>--------------------------</p>
-              <div class="form-group">
-                <label class="control-label">PRECIOS</label>
-                <br>
-                Precio maximo<input type="number" id="searchString4" class="form-control" aria-label="searchString4" name="searchString4" min="1"/>
-                <br>
-                Precio minimo<input type="number" id="searchString5" class="form-control" aria-label="searchString5" name="searchString5" min="1"/>
-                <br>
+            <div class="form-outline">
+              <input type="text" id="Subclase" class="form-control" placeholder="Buscar" aria-label="Subclase" name="Subclase"/>
             </div>
             <p>--------------------------</p>
             <input type="submit" value="Buscar" class="btn btn-primary "/>   
         </form>
 
       </div>
+
+
       <div class="col">
         <div id="products" class="mb-3">
           <div class="row">
-            @foreach (var item in Model) {
+            @foreach (DataRow row in Model.Rows) {
             <div class="col-sm-4">
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="card-img-actions">
                     <img class="img-responsive" width="250" height="250"
-                       src="@item.ImageName" alt="@item.ImageName"  />
+                       src="@row["ImageName"]" alt="@row["ImageName"]"  />
                   </div>
                 </div>
                 <div class="card-body">
-                  <h4 class="card-title" style="color:red">@Html.DisplayFor(modelItem => item.Name)</h4>
-                  <p class="card-text" style="font-size: 24px;font-weight: bold;color:red">S/. @Html.DisplayFor(modelItem => item.Precio)       
-                  <p class="card-text" style="font-size: 16px;color: #949794;font-weight: bold;text-decoration-line: line-through;"> Precio Original: S/. @Html.DisplayFor(modelItem => item.PorcentajeDescuento)</p></p>
-                  <a class="btn btn-info" asp-action="Add" asp-route-id="@item.Id">Agregar al Carrito</a>
-                  <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+                  <h4 class="card-title" style="color:red">@row["id"]</h4>
+                  <h4 class="card-title" style="color:red">@row["Name"]</h4>
+                  <p class="card-text" style="font-size: 24px;font-weight: bold;color:red">S/. @row["Precio"]       
+                  <p class="card-text" style="font-size: 16px;color: #949794;font-weight: bold;text-decoration-line: line-through;"> Precio Original: S/. @row["PorcentajeDescuento"]</p></p>
+                  <a class="btn btn-info" asp-action="Add" asp-route-id="@row["id"]">Agregar al Carrito</a>
+                  <a class="btn btn-info" asp-action="Details" asp-route-id="@row["id"]">Detalles</a>
                 </div>
               </div>
             </div>

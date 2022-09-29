@@ -1,27 +1,29 @@
-@model aplicacionraiz2022postgress.Models.Producto
+@using System.Data
+@model DataTable
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "DETALLES PRODUCTOS";
 }
 
     <h1>Detalles</h1>
     <div class="container">
             <div class="col-sm-4">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="card-img-actions">
-                    <img class="img-responsive" width="370" height="350"
-                       src="@Html.DisplayFor(model => model.ImageName)" alt="@Html.DisplayFor(model => model.ImageName)"  />
+              @foreach (DataRow row in Model.Rows) {
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="card-img-actions">
+                      <img class="img-responsive" width="370" height="350"
+                        src="@row["ImageName"]" alt="@row["ImageName"]"  />
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">@row["Name"]</h5>
+                    <p class="card-text">@row["Descripcion"]</p>
+                    <h5 class="card-title">@row["Precio"]</h5>
+                    <a href="@row["Image3D"]" target="_blank"> Vistas 3D</a>
                   </div>
                 </div>
-                <div class="card-body">
-                  <h5 class="card-title">@Html.DisplayFor(model => model.Name)</h5>
-                  <p class="card-text">@Html.DisplayFor(model => model.Descripcion)</p>
-                  <h5 class="card-title">@Html.DisplayFor(model => model.Precio)</h5>
-                  <a class="btn btn-primary" asp-action="Add" asp-route-id="Item.Id">Agregar a carrito</a>
-                  <a href="@Html.DisplayFor(model => model.Image3D)" target="_blank"> Vistas 3D</a>
-                </div>
-              </div>
+              }
             </div>
     </div>
 

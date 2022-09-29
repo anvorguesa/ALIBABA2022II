@@ -21,7 +21,7 @@ namespace aplicacionraiz2022postgress.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String? Clase, String? Subclase)
         {
             DataTable dt = new DataTable();
             using(var client = new HttpClient())
@@ -29,32 +29,65 @@ namespace aplicacionraiz2022postgress.Controllers
                 client.BaseAddress = new Uri(baseUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage getData=await client.GetAsync("getproductos");
-
-                if (getData.IsSuccessStatusCode)
+            
+                if (String.IsNullOrEmpty(Clase) && String.IsNullOrEmpty(Subclase))
                 {
-                    string result = getData.Content.ReadAsStringAsync().Result;
-                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
-                }else{
-                    Console.WriteLine("Error Calling web API");
+                    HttpResponseMessage getData=await client.GetAsync("getproductos");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else if(String.IsNullOrEmpty(Clase))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQueryProductos?Clase="+"&Subclase="+Subclase);
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else if(!String.IsNullOrEmpty(Clase) || String.IsNullOrEmpty(Subclase))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQueryProductos?Clase="+Clase+"&Subclase=");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQuery2Productos?Clase="+Clase+"&Subclase="+Subclase);
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
                 }
-                ViewData.Model = dt;
             }
-
-
             return View();
         }
     public async Task<IActionResult> Details(int? id)
     {
-        DataTable dt = new DataTable();
+            DataTable dt = new DataTable();
             using(var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage getData=await client.GetAsync("getproductos");
+                HttpResponseMessage getData=await client.GetAsync("getproductos?id="+id);
 
                 if (getData.IsSuccessStatusCode)
                 {
@@ -67,8 +100,8 @@ namespace aplicacionraiz2022postgress.Controllers
             }
 
 
-            return View();
-    }
+            return View(dt);
+        }
 
 
 

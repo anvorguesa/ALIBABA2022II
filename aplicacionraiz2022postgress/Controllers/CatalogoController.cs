@@ -9,6 +9,9 @@ using Microsoft.Extensions.Logging;
 using aplicacionraiz2022postgress.Data;
 using aplicacionraiz2022postgress.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace aplicacionraiz2022postgress.Controllers
 {
@@ -18,6 +21,7 @@ namespace aplicacionraiz2022postgress.Controllers
 
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
+        string baseUrl ="https://appfunctions-ab2022ii.azurewebsites.net/api/";
 
         public CatalogoController(ApplicationDbContext context,
                 ILogger<CatalogoController> logger,
@@ -29,48 +33,90 @@ namespace aplicacionraiz2022postgress.Controllers
     
         }
 
-        public async Task<IActionResult> Index(string? searchString,string? searchString1,string? searchString2,string? searchString3,int? searchString4,int? searchString5,string? searchString6,string? searchString7,string? searchString8)
+        public async Task<IActionResult> Index(String? Clase, String? Subclase)
         {
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             
-            var productos = from o in _context.DataProductos select o;
-            //SELECT * FROM t_productos -> &
-            if(!String.IsNullOrEmpty(searchString )){
-                productos = productos.Where(s => s.Keywords.Contains(searchString)); 
+                if (String.IsNullOrEmpty(Clase) && String.IsNullOrEmpty(Subclase))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getproductos");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else if(String.IsNullOrEmpty(Clase))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQueryProductos?Clase="+"&Subclase="+Subclase);
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else if(!String.IsNullOrEmpty(Clase) || String.IsNullOrEmpty(Subclase))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQueryProductos?Clase="+Clase+"&Subclase=");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }else
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getQuery2Productos?Clase="+Clase+"&Subclase="+Subclase);
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+                }
             }
-            if(String.IsNullOrEmpty(searchString2 )){
-                 
-            }else{
-                productos = productos.Where(s => s.Clase.Contains(searchString2));
-            }
-            if(String.IsNullOrEmpty(searchString3 )){
-                 
-            }else{
-                productos = productos.Where(s => s.Estado.Contains(searchString3));
-            }
-            if(searchString4 == null && searchString5 == null){
-
-            }else if(searchString4 == null && searchString5 >0){
-                productos = productos.Where(s => s.Precio>=searchString5);
-            }else if(searchString4 >0 && searchString5 == null){
-                productos = productos.Where(s => s.Precio<=searchString4);
-            }else{
-                productos = productos.Where(s => s.Precio>=searchString4 && s.Precio<=searchString5);
-            }
-
-            productos = productos.Where(s => s.Status.Contains("Activo"));
-            return View(await productos.ToListAsync());
+            return View();
         }
 
         public async Task<IActionResult> Details(int? id)
-        {
-            Producto objProduct = await _context.DataProductos.FindAsync(id);
-            if(objProduct == null){
-                return NotFound();
+    {
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage getData=await client.GetAsync("getproductos?id="+id);
+
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
             }
-            return View(objProduct);
+
+
+            return View(dt);
         }
 
-        public async Task<IActionResult> Add(int? id){
+         public async Task<IActionResult> Add(int? id){
             var userID = _userManager.GetUserName(User);
             if(userID == null){
                 ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
@@ -80,7 +126,8 @@ namespace aplicacionraiz2022postgress.Controllers
                 var producto = await _context.DataProductos.FindAsync(id);
                 Proforma proforma = new Proforma();
                 proforma.Producto = producto;
-                proforma.Precio = (decimal)producto.Precio;
+                decimal? precio = producto.Precio;
+                proforma.Precio = (decimal)precio;
                 proforma.Cantidad = 1;
                 proforma.UserID = userID;
                 _context.Add(proforma);
