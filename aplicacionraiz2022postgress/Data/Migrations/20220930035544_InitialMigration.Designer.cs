@@ -12,8 +12,8 @@ using aplicacionraiz2022postgress.Data;
 namespace aplicacionraiz2022postgress.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220910033149_Initial1112Migration")]
-    partial class Initial1112Migration
+    [Migration("20220930035544_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,109 @@ namespace aplicacionraiz2022postgress.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("t_Contacto");
+                    b.ToTable("t_contacto");
+                });
+
+            modelBuilder.Entity("aplicacionraiz2022postgress.Models.DetallePedido", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("integer")
+                        .HasColumnName("Cantidad");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("numeric")
+                        .HasColumnName("Precio");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("pedidoID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProductoId");
+
+                    b.HasIndex("pedidoID");
+
+                    b.ToTable("t_order_detail");
+                });
+
+            modelBuilder.Entity("aplicacionraiz2022postgress.Models.Pago", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("numeric")
+                        .HasColumnName("MontoTotal");
+
+                    b.Property<string>("NombreTarjeta")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("NombreTarjeta");
+
+                    b.Property<string>("NumeroTarjeta")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("NumeroTarjeta");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("PaymentDate");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("UserID");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_pago");
+                });
+
+            modelBuilder.Entity("aplicacionraiz2022postgress.Models.Pedido", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("Status");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("numeric")
+                        .HasColumnName("Total");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("UserID");
+
+                    b.Property<int>("pagoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("pagoId");
+
+                    b.ToTable("t_order");
                 });
 
             modelBuilder.Entity("aplicacionraiz2022postgress.Models.Producto", b =>
@@ -365,6 +467,36 @@ namespace aplicacionraiz2022postgress.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("aplicacionraiz2022postgress.Models.DetallePedido", b =>
+                {
+                    b.HasOne("aplicacionraiz2022postgress.Models.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("aplicacionraiz2022postgress.Models.Pedido", "pedido")
+                        .WithMany()
+                        .HasForeignKey("pedidoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
+
+                    b.Navigation("pedido");
+                });
+
+            modelBuilder.Entity("aplicacionraiz2022postgress.Models.Pedido", b =>
+                {
+                    b.HasOne("aplicacionraiz2022postgress.Models.Pago", "pago")
+                        .WithMany()
+                        .HasForeignKey("pagoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("pago");
                 });
 
             modelBuilder.Entity("aplicacionraiz2022postgress.Models.Proforma", b =>
