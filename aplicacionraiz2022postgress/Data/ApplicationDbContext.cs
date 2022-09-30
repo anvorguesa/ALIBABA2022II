@@ -15,4 +15,10 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<aplicacionraiz2022postgress.Models.Producto> DataProductos { get; set; }
 
     public DbSet<aplicacionraiz2022postgress.Models.Proforma> DataProforma { get; set; }
+
+    public DbSet<aplicacionraiz2022postgress.Models.Pago> DataPago { get; set; }
+
+    public DbSet<aplicacionraiz2022postgress.Models.Pedido> DataPedido { get; set; }
+
+    public DbSet<aplicacionraiz2022postgress.Models.DetallePedido> DataDetallePedido { get; set; }
 }
