@@ -21,4 +21,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<aplicacionraiz2022postgress.Models.Pedido> DataPedido { get; set; }
 
     public DbSet<aplicacionraiz2022postgress.Models.DetallePedido> DataDetallePedido { get; set; }
+    public DbSet<aplicacionraiz2022postgress.Models.Descripcion> DataDescripcion { get; set; }
 }
