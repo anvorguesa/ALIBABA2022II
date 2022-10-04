@@ -92,7 +92,7 @@ namespace aplicacionraiz2022postgress.Controllers
         }
 
         public async Task<IActionResult> Details(int? id)
-    {
+        {
             DataTable dt = new DataTable();
             using(var client = new HttpClient())
             {
@@ -116,7 +116,8 @@ namespace aplicacionraiz2022postgress.Controllers
             return View(dt);
         }
 
-         public async Task<IActionResult> Add(int? id){
+         public async Task<IActionResult> Add(int? id)
+        {
             var userID = _userManager.GetUserName(User);
             if(userID == null){
                 ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
@@ -136,7 +137,8 @@ namespace aplicacionraiz2022postgress.Controllers
             }
 
         }
-        public async Task<IActionResult> Add2(int? id,int? canti){
+        public async Task<IActionResult> Add2(int? id,int? canti)
+        {
             var userID = _userManager.GetUserName(User);
             if(userID == null){
                 ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
@@ -148,7 +150,7 @@ namespace aplicacionraiz2022postgress.Controllers
                 proforma.Producto = producto;
                 decimal? precio = producto.Precio;
                 proforma.Precio = (decimal)precio;
-                proforma.Cantidad = c;
+                proforma.Cantidad = (int)canti;
                 proforma.UserID = userID;
                 _context.Add(proforma);
                 await _context.SaveChangesAsync();

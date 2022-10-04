@@ -54,15 +54,14 @@
                   <h4 class="card-title" style="color:red">@row["Name"]</h4>
                   <p class="card-text" style="font-size: 24px;font-weight: bold;color:red">S/. @row["Precio"]       
                   <p class="card-text" style="font-size: 16px;color: #949794;font-weight: bold;text-decoration-line: line-through;"> Precio Original: S/. @row["PorcentajeDescuento"]</p></p>
-                  <a class="btn btn-info" asp-action="Add" asp-route-id="@row["id"]">Agregar al Carrito</a>
-                  <a class="btn btn-info" asp-action="Details" asp-route-id="@row["id"]">Detalles</a>
                   <div>
-                      <form asp-controller="Catalogo" asp-action="Add2 ">
-                      <input type="number" min="1" max="12" style="width:70px" id="canti" class="form-control" placeholder="1" aria-label="canti" name="canti" value="1" />
-                      <input type="text" id="id" class="form-control" aria-label="id" name="id" value="@row["id"]" />
-                      <input type="submit" value="Agregar al Carrito" class="btn btn-primary "/> 
+                      <form asp-controller="Catalogo" asp-action="Add2">
+                      <input type="hidden" id="id" class="form-control" aria-label="id" name="id" value="@row["id"]" />
+                      <input type="number" min="1" max="12" style="width:100px" id="canti" class="form-control" placeholder="1" aria-label="canti" name="canti" value="1" />
+                      <input type="submit" value="Agregar al Carrito" class="btn btn-info "/> 
                       </form>
                   </div>
+                  <a class="btn btn-info" asp-action="Details" asp-route-id="@row["id"]">Detalles</a>
                 </div>
               </div>
             </div>
