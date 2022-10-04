@@ -14,44 +14,49 @@
               <div class="form-group row">
                 <input type="hidden" asp-for="UserID"/>
                 <div class="col-sm-2">
-                  <label asp-for="NombreTarjeta" class="control-label"></label>
+                  <label asp-for="NombreTarjeta" class="control-label">Nombre del dueño</label>
                 </div>
-                <div class="col-sm-2">
-                  <input asp-for="NombreTarjeta" class="form-control" />
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="NumeroTarjeta" class="control-label"></label>
-                </div>
-                <div class="col-sm-2">
-                  <input asp-for="NumeroTarjeta" class="form-control" data-inputmask="'mask': '9999-9999-9999-9999'" />
-                </div>
-              </div>              
-              <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="DueDateYYMM" class="control-label"></label>
-                </div>
-                <div class="col-sm-2">
-                  <input asp-for="DueDateYYMM" class="form-control" data-inputmask="'mask': '99/99', 'placeholder': 'yy/mm'" />
+                <div class="col-sm-4">
+                  <input asp-for="NombreTarjeta" placeholder="Nombre del dueño" class="form-control" />
                 </div>
               </div>
+              <br>
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <label asp-for="NumeroTarjeta" class="control-label">Numero de Tarjeta</label>
+                </div>
+                <div class="col-sm-4">
+                  <input asp-for="NumeroTarjeta" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" data-inputmask="'mask': '9999-9999-9999-9999'" />
+                </div>
+              </div>       
+              <br>       
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <label asp-for="DueDateYYMM" class="control-label">Vencimiento</label>
+                </div>
+                <div class="col-sm-4">
+                  <input asp-for="DueDateYYMM" placeholder="MM/YY" class="form-control" data-inputmask="'mask': '99/99', 'placeholder': 'yy/mm'" />
+                </div>
+              </div>
+              <br>
               <div class="form-group row">
                 <div class="col-sm-2">
                   <label asp-for="Cvv" class="control-label"></label>
                 </div>
-                <div class="col-sm-2">
-                  <input asp-for="Cvv" class="form-control" data-inputmask="'mask': '999', 'placeholder': '999'" />
+                <div class="col-sm-4">
+                  <input asp-for="Cvv" placeholder="xxx" class="form-control" data-inputmask="'mask': '999', 'placeholder': '999'" />
                 </div>
               </div>
+              <br>
               <div class="form-group row">
                 <div class="col-sm-2">
-                  <label asp-for="MontoTotal" class="control-label"></label>
+                  <label asp-for="MontoTotal" class="control-label">Monto Total</label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                   <input type="look" asp-for="MontoTotal" class="form-control" data-thousands="," data-decimal="." />
                 </div>
-              </div>  
+              </div> 
+              <br> 
               <div class="form-group row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">
