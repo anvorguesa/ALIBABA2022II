@@ -1,0 +1,44 @@
+@model IEnumerable<aplicacionraiz2022postgress.Models.Descripcion>
+
+@{
+    ViewData["Title"] = "Descripcion De Usuario";
+}
+
+<h1>Descripcion de Usuario</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                USUARIO
+            </th>
+            <th>
+                DESCRIPCION
+            </th>
+            <th>
+                TAGS
+            </th>
+            <th>
+                TEXTO 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Tags)
+            </td>
+            <td>
+               @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextConst)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

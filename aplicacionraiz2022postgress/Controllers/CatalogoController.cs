@@ -136,25 +136,6 @@ namespace aplicacionraiz2022postgress.Controllers
             }
 
         }
-        public async Task<IActionResult> Add2(int? id,int? canti){
-            var userID = _userManager.GetUserName(User);
-            if(userID == null){
-                ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
-                List<Producto> productos = new List<Producto>();
-                return  View("Index",productos);
-            }else{
-                var producto = await _context.DataProductos.FindAsync(id);
-                Proforma proforma = new Proforma();
-                proforma.Producto = producto;
-                decimal? precio = producto.Precio;
-                proforma.Precio = (decimal)precio;
-                proforma.Cantidad = c;
-                proforma.UserID = userID;
-                _context.Add(proforma);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-
-        }
+        
     }
 }
