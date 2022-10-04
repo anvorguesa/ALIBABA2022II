@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {}
+    "C:\\Users\\diego\\Desktop\\Fia10\\progra2\\Perm\\ALIBABA2022II\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {}
   },
   "projects": {
-    "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {
+    "C:\\Users\\diego\\Desktop\\Fia10\\progra2\\Perm\\ALIBABA2022II\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
+        "projectUniqueName": "C:\\Users\\diego\\Desktop\\Fia10\\progra2\\Perm\\ALIBABA2022II\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
         "projectName": "aplicacionraiz2022postgress",
-        "projectPath": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
+        "projectPath": "C:\\Users\\diego\\Desktop\\Fia10\\progra2\\Perm\\ALIBABA2022II\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
         "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\obj\\",
+        "outputPath": "C:\\Users\\diego\\Desktop\\Fia10\\progra2\\Perm\\ALIBABA2022II\\aplicacionraiz2022postgress\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\diego\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -88,7 +85,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -100,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
