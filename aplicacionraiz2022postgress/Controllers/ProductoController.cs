@@ -8,12 +8,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using aplicacionraiz2022postgress.Data;
 using aplicacionraiz2022postgress.Models;
+using System.Data;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace aplicacionraiz2022postgress.Controllers
 {
     public class ProductoController : Controller
     {
         private readonly ApplicationDbContext _context;
+        string baseUrl ="https://appfunctions-ab2022ii.azurewebsites.net/api/";
 
         public ProductoController(ApplicationDbContext context)
         {
@@ -23,25 +27,53 @@ namespace aplicacionraiz2022postgress.Controllers
         // GET: Producto
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DataProductos.ToListAsync());
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage getData=await client.GetAsync("getproductos");
+
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
+            }
+
+
+            return View(dt);
         }
 
         // GET: Producto/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
             {
-                return NotFound();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage getData=await client.GetAsync("getproductos?id="+id);
+
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
             }
 
-            var producto = await _context.DataProductos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
-            {
-                return NotFound();
-            }
 
-            return View(producto);
+            return View(dt);
         }
 
         // GET: Producto/Create
@@ -120,19 +152,27 @@ namespace aplicacionraiz2022postgress.Controllers
         // GET: Producto/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
             {
-                return NotFound();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage getData=await client.GetAsync("getproductos?id="+id);
+
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
             }
 
-            var producto = await _context.DataProductos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (producto == null)
-            {
-                return NotFound();
-            }
 
-            return View(producto);
+            return View(dt);
         }
 
         // POST: Producto/Delete/5

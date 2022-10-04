@@ -12,7 +12,6 @@ namespace aplicacionraiz2022postgress.Controllers
 {
     public class PagoController:Controller
     {
-
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
@@ -34,6 +33,7 @@ namespace aplicacionraiz2022postgress.Controllers
         [HttpPost]
         public IActionResult Pagar(Pago pago)
         {
+        if (ModelState.IsValid && pago.MontoTotal > 0){   
             pago.PaymentDate = DateTime.UtcNow;
             _context.Add(pago);
 
@@ -73,6 +73,12 @@ namespace aplicacionraiz2022postgress.Controllers
             ViewData["Message"] = "El pago se ha registrado";
             return View("Create");
         }
-
+            ViewData["Message"] = "Complete todo el formulario y/o tenga ptoducto en carrito";
+            return View("Create");
+        }
+        
+    
     }
+    
+    
 }

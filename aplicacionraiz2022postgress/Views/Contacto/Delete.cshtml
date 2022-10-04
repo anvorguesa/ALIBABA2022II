@@ -1,4 +1,5 @@
-@model aplicacionraiz2022postgress.Models.Contacto
+@using System.Data
+@model DataTable
 
 @{
     ViewData["Title"] = "Delete";
@@ -7,6 +8,7 @@
 <h1>Elimiar</h1>
 
 <h3>¿Estas seguro que deseas eliminar?</h3>
+@foreach (DataRow row in Model.Rows) {
 <div>
     <h4>Produto</h4>
     <hr />
@@ -15,19 +17,19 @@
     <thead>
         <tr>
                <th>
-                @Html.DisplayNameFor(model => model.Id)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                NOMBRE
             </th>
             <th>
-                @Html.DisplayNameFor(model =>model.email)
+                EMAIL
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.subject)
+                MOTIVO
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.comment)
+                COMENTARIO
             </th>
             <th>     
             <th></th>
@@ -37,19 +39,19 @@
 
      <tr>
            <td>
-                @Html.DisplayFor(model => model.Id)
+                @row["id"]
             </td>
             <td>
-                @Html.DisplayFor(model => model.name)
+                @row["name"]
             </td>
             <td>
-                @Html.DisplayFor(model => model.email)
+                @row["email"]
             </td>
             <td>
-                @Html.DisplayFor(model => model.subject)
+                @row["subject"]
             </td>
             <td>
-                @Html.DisplayFor(model => model.comment)
+                @row["comment"]
             </td>
 
   
@@ -61,8 +63,9 @@
 </table>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="@row["id"]" />
         <input type="submit" value="Delete" class="btn btn-danger" /> 
         <a asp-action="Indexadmin">Back to List</a>
     </form>
 </div>
+}

@@ -1,72 +1,74 @@
-@model aplicacionraiz2022postgress.Models.Producto
+@using System.Data
+@model DataTable
 
 @{
     ViewData["Title"] = "Details";
 }
 
 <h1>Details</h1>
-
+@foreach (DataRow row in Model.Rows) {
 <div>
     <h4>Producto</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            NOMBRE
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @row["Name"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
+            DESCRIPCION
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
+            @row["Descripcion"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Keywords)
+            KEYWORDS
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Keywords)
+            @row["Keywords"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
+            ESTADO
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
+            @row["Estado"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
+            PRECIO
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
+            @row["Precio"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PorcentajeDescuento)
+            PORCENTAJE DE DESCUENTO
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PorcentajeDescuento)
+            @row["PorcentajeDescuento"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageName)
+            NOMBRE DE IMAGEN
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageName)
+            @row["ImageName"]
         </dd>
                 <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image3D)
+            IMAGEN 3D
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image3D)
+            @row["Image3D"]
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
+            STATUS
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
+            @row["Status"]
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@row["id"]">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+}

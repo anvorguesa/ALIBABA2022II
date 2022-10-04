@@ -4,6 +4,9 @@ using aplicacionraiz2022postgress.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
+using System.Data;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 namespace aplicacionraiz2022postgress.Controllers
 {
     public class ListaVentasController: Controller
@@ -12,6 +15,9 @@ namespace aplicacionraiz2022postgress.Controllers
         private readonly ApplicationDbContext _context;
 
         private readonly UserManager<IdentityUser> _userManager; 
+    
+        string baseUrl ="https://appfunctions-ab2022ii.azurewebsites.net/api/";
+
         public ListaVentasController(ApplicationDbContext context)
         {
             _context = context;
@@ -20,13 +26,24 @@ namespace aplicacionraiz2022postgress.Controllers
 
         public async Task<IActionResult> Index()
         {
-        var items = from o in _context.DataPago select o;
-        var datos = await items.ToListAsync();
-
-        dynamic model = new ExpandoObject();
-        model.elementosDatos = datos;
-        
-        return View(model);
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage getData=await client.GetAsync("getPago");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+            
+            }
+        return View();
         }
 
         public async Task<IActionResult> Details(int? id){

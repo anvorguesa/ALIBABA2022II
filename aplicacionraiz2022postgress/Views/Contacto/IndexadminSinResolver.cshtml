@@ -1,4 +1,5 @@
-@model IEnumerable<aplicacionraiz2022postgress.Models.Contacto>
+@using System.Data
+@model DataTable
 
 @{
     ViewData["Title"] = "Mensajes Sin Resolver";
@@ -32,29 +33,32 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (DataRow row in Model.Rows) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @row["id"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.name)
+                @row["name"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.email)
+                @row["email"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.subject)
+                @row["subject"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.comment)
+                @row["comment"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @row["Status"]
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @row["AnotacionAdmin"]
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@row["id"]">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@row["id"]">Delete</a>
             </td>
         </tr>
 }

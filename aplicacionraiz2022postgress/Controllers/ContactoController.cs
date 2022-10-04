@@ -1,20 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using aplicacionraiz2022postgress.Models;
 using aplicacionraiz2022postgress.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using System.Dynamic;
-
+using System.Data;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 namespace aplicacionraiz2022postgress.Controllers
 {
     public class ContactoController: Controller
     {
         private readonly ApplicationDbContext _context;
+        
+        string baseUrl ="https://appfunctions-ab2022ii.azurewebsites.net/api/";
 
         public ContactoController(ApplicationDbContext context)
         {
@@ -43,44 +40,110 @@ namespace aplicacionraiz2022postgress.Controllers
 
 
         public async Task<IActionResult> Indexadmin(){
-        var items = from o in _context.DataContactos select o;
-        return View(await items.OrderByDescending(w => w.Id).ToListAsync());
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage getData=await client.GetAsync("getContacto");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+            
+            }
+        return View();
         }
         public async Task<IActionResult> IndexadminResueltos(){
-        var items = from o in _context.DataContactos select o;
-        items = items.Where(s => s.Status.Contains("RESUELTO"));
-        return View(await items.OrderByDescending(w => w.Id).ToListAsync());
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage getData=await client.GetAsync("getContacto?Status=RESUELTO");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+            
+            }
+        return View();
         }
         public async Task<IActionResult> IndexadminSinResolver(){
-        var items = from o in _context.DataContactos select o;
-        items = items.Where(s => s.Status.Contains("SIN_RESOLVER"));
-        
-        return View(await items.OrderByDescending(w => w.Id).ToListAsync());
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage getData=await client.GetAsync("getContacto?Status=SIN_RESOLVER");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+            
+            }
+        return View();
         }
         public async Task<IActionResult> IndexadminPendientes(){
-        var items = from o in _context.DataContactos select o;
-        items = items.Where(s => s.Status.Contains("PENDIENTE"));
-        
-        return View(await items.OrderByDescending(w => w.Id).ToListAsync());
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage getData=await client.GetAsync("getContacto?Status=PENDIENTE");
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
+            
+            }
+        return View();
         }
 
         public async Task<IActionResult> Delete(int? id)
 
         {
-
-            if (id == null)
+            DataTable dt = new DataTable();
+            using(var client = new HttpClient())
             {
-                return NotFound();
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage getData=await client.GetAsync("getContacto?id="+id+"&Status=");
+
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
             }
 
-            var produto = await _context.DataContactos
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-            return View(produto);
 
+            return View(dt);
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

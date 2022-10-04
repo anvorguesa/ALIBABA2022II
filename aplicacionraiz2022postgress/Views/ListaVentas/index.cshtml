@@ -1,10 +1,8 @@
-@model dynamic;
-@using System.Collections.Generic;
+@using System.Data
+@model DataTable
 
 @{
     ViewData["Title"] = "Lista de Ventas";
-    IEnumerable<aplicacionraiz2022postgress.Models.Pago> listItemsPago = new List<Pago>();
-    listItemsPago = @Model.elementosDatos;
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -12,44 +10,44 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().Id)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().NombreTarjeta)
+                NombreTarjeta
             </th>
             <th>
-                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().NumeroTarjeta)
+                NumeroTarjeta
             </th>
             <th>
-                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().MontoTotal)
+                MontoTotal
             </th>
             <th>
-                @Html.DisplayNameFor(model => listItemsPago.FirstOrDefault().UserID)
+                UserID
             </th>
             <th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (Pago item in Model.elementosDatos) {
+@foreach (DataRow row in Model.Rows) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @row["id"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreTarjeta)
+                @row["NombreTarjeta"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumeroTarjeta)
+                @row["NumeroTarjeta"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MontoTotal)
+                @row["MontoTotal"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UserID)
+                @row["UserID"]
             </td>
             <td>
-               <a class="btn btn-info" asp-controller="ListaVentas" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+               <a class="btn btn-info" asp-controller="ListaVentas" asp-action="Details" asp-route-id="@row["id"]">Detalles</a>
         </tr>
 }
     </tbody>

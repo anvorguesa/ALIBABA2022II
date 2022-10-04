@@ -1,4 +1,5 @@
-@model IEnumerable<aplicacionraiz2022postgress.Models.Producto>
+@using System.Data
+@model DataTable
 
 @{
     ViewData["Title"] = "Index";
@@ -13,51 +14,51 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                NOMBRE
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                DESCRIPCION
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Precio)
+                PRECIO
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PorcentajeDescuento)
+                PORCENTAJE DE DESCUENTO
             </th>
             <th>
                 URL de imagen
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                STATUS
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (DataRow row in Model.Rows) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @row["Name"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @row["Descripcion"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Precio)
+                @row["Precio"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PorcentajeDescuento)
+                @row["PorcentajeDescuento"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
+                @row["ImageName"]
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @row["Status"]
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@row["id"]">Edit</a> |
+                <a asp-action="Details" asp-route-id="@row["id"]">Details</a> |
+                <a asp-action="Delete" asp-route-id="@row["id"]">Delete</a>
             </td>
         </tr>
 }

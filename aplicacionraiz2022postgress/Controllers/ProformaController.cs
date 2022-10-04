@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using aplicacionraiz2022postgress.Models;
 using aplicacionraiz2022postgress.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Dynamic;
-
-
-
+using System.Data;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace aplicacionraiz2022postgress.Controllers
 {
@@ -21,6 +15,7 @@ namespace aplicacionraiz2022postgress.Controllers
         private readonly ILogger<CatalogoController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager; 
+        string baseUrl ="https://appfunctions-ab2022ii.azurewebsites.net/api/";
 
         public ProformaController(ApplicationDbContext context,
             ILogger<CatalogoController> logger,
@@ -61,33 +56,28 @@ namespace aplicacionraiz2022postgress.Controllers
         public async Task<IActionResult> Delete(int? id)
 
         {
-
-            if (id == null)
-
+        string valor = "PENDIENTE";
+        DataTable dt = new DataTable();
+            using(var client = new HttpClient())
             {
+                client.BaseAddress = new Uri(baseUrl);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                return NotFound();
+                HttpResponseMessage getData=await client.GetAsync("getProforma?id="+id+"&Status="+valor);
 
+                if (getData.IsSuccessStatusCode)
+                {
+                    string result = getData.Content.ReadAsStringAsync().Result;
+                    dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                }else{
+                    Console.WriteLine("Error Calling web API");
+                }
+                ViewData.Model = dt;
             }
 
 
-
-            var proform = await _context.DataProforma
-
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (proform == null)
-
-            {
-
-                return NotFound();
-
-            }
-
-
-
-            return View(proform);
-
+            return View(dt);
         }
 
         [HttpPost, ActionName("Delete")]
