@@ -137,7 +137,6 @@ namespace aplicacionraiz2022postgress.Controllers
             }
 
         }
-<<<<<<< HEAD
         public async Task<IActionResult> Add2(int? id,int? canti)
         {
             var userID = _userManager.GetUserName(User);
@@ -159,8 +158,5 @@ namespace aplicacionraiz2022postgress.Controllers
             }
 
         }
-=======
-        
->>>>>>> 1215fb20b85c8facb624e8170697f24ea362eb72
     }
 }
