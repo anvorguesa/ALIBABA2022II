@@ -114,12 +114,6 @@ body {
     box-shadow: none
 }
 
-.btn,
-.btn:focus,
-.btn:hover {
-    background-color: blue;
-    border: blue
-}
 
 #check {
     display: none !important
