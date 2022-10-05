@@ -143,18 +143,26 @@ namespace aplicacionraiz2022postgress.Controllers
             if(userID == null){
                 ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
                 List<Producto> productos = new List<Producto>();
-                return  View("Index",productos);
+                return  View("Index");
             }else{
                 var producto = await _context.DataProductos.FindAsync(id);
-                Proforma proforma = new Proforma();
-                proforma.Producto = producto;
-                decimal? precio = producto.Precio;
-                proforma.Precio = (decimal)precio;
-                proforma.Cantidad = (int)canti;
-                proforma.UserID = userID;
-                _context.Add(proforma);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                
+
+                    ViewData["Message"] = "Ya se encuentra en carrito, borralo";
+                    List<Producto> productos = new List<Producto>();
+                    return RedirectToAction(nameof(Index)); 
+                
+                    Proforma proforma = new Proforma();
+                    proforma.Producto = producto;
+                    decimal? precio = producto.Precio;
+                    proforma.Precio = (decimal)precio;
+                    proforma.Cantidad = (int)canti;
+                    proforma.UserID = userID;
+                    _context.Add(proforma);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));    
+                
+                
             }
 
         }

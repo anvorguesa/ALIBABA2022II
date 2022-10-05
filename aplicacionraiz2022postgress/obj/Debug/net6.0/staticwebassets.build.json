@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yjMvlDiTg2caE3HipqMKoNfLxBxlS8jC9KRN1l/kF68=",
+  "Hash": "lisLysHgwbj1JuHeNoljwTdjsT5YUnsKrd+j4xN+G/0=",
   "Source": "aplicacionraiz2022postgress",
   "BasePath": "_content/aplicacionraiz2022postgress",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\antiguo.webp"
+    },
+    {
+      "Identity": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\wwwroot\\images\\bot-icon.png",
+      "SourceId": "aplicacionraiz2022postgress",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\wwwroot\\",
+      "BasePath": "_content/aplicacionraiz2022postgress",
+      "RelativePath": "images/bot-icon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\bot-icon.png"
     },
     {
       "Identity": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\wwwroot\\images\\comedor.jpg",
