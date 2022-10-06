@@ -24,7 +24,7 @@ namespace aplicacionraiz2022postgress.Controllers
             _context = context;
         }
 
-        // GET: Producto
+        // GET: Productos
         public async Task<IActionResult> Index()
         {
             DataTable dt = new DataTable();
