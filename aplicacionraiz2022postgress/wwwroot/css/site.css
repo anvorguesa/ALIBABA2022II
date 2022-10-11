@@ -122,3 +122,20 @@ body {
 .icon-bot {
     width: 80%;
 }
+.Descripcion{
+    position: absolute;
+    left:85%;
+    top:70px;
+    padding: 5px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    color:#fff;
+    height:0;
+    width:0;
+    opacity: 0;
+}
+.active{
+    height: inherit;
+    width: inherit;
+    opacity: 1;
+}
