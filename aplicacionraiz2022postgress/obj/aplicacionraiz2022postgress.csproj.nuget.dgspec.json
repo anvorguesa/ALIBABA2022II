@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {}
+    "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {}
   },
   "projects": {
-    "c:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {
+    "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
+        "projectUniqueName": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
         "projectName": "aplicacionraiz2022postgress",
-        "projectPath": "c:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
+        "projectPath": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress.csproj",
         "packagesPath": "C:\\Users\\diego\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\obj\\",
+        "outputPath": "C:\\Users\\diego\\OneDrive\\Escritorio\\FinalProy\\aplicacionraiz2022postgress\\aplicacionraiz2022postgress\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
