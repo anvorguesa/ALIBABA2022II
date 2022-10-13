@@ -53,6 +53,17 @@ namespace aplicacionraiz2022postgress.Controllers
                             Console.WriteLine("Error Calling web API");
                         }
                         ViewData.Model = dt;
+                }else if(String.IsNullOrEmpty(Clase) && String.IsNullOrEmpty(Subclase) && String.IsNullOrEmpty(Estado))
+                {
+                    HttpResponseMessage getData=await client.GetAsync("getProductos");;
+                    if (getData.IsSuccessStatusCode)
+                        {
+                            string result = getData.Content.ReadAsStringAsync().Result;
+                            dt=JsonConvert.DeserializeObject<DataTable>(result); //
+                        }else{
+                            Console.WriteLine("Error Calling web API");
+                        }
+                        ViewData.Model = dt;
                 }else if(String.IsNullOrEmpty(Clase) && String.IsNullOrEmpty(Subclase))
                 {
                     HttpResponseMessage getData=await client.GetAsync("getQuery3Productos?Clase="+"&Subclase="+"&Estado="+Estado);
@@ -121,7 +132,7 @@ namespace aplicacionraiz2022postgress.Controllers
                         ViewData.Model = dt;
                 }else
                 {
-                    HttpResponseMessage getData=await client.GetAsync("getQueryProductos?Clase="+Clase+"&Subclase="+Subclase+"&Estado="+Estado);
+                    HttpResponseMessage getData=await client.GetAsync("getProductos");
                     if (getData.IsSuccessStatusCode)
                         {
                             string result = getData.Content.ReadAsStringAsync().Result;
