@@ -26,7 +26,7 @@
                   <label asp-for="NumeroTarjeta" class="control-label">Numero de Tarjeta</label>
                 </div>
                 <div class="col-sm-4">
-                  <input asp-for="NumeroTarjeta" type="number" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" data-inputmask="'mask': '9999-9999-9999-9999'" />
+                  <input asp-for="NumeroTarjeta" type="number" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" min="1000000000000000" max="9999999999999999" required/>
                 </div>
               </div>       
               <br>       
