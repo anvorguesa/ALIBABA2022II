@@ -124,18 +124,46 @@ body {
 }
 .Descripcion{
     position: absolute;
-    left:85%;
+    left:82%;
     top:70px;
-    padding: 5px 20px;
+    padding: 5px 30px;
     border: 1px solid black;
     border-radius: 5px;
     color:#fff;
     height:0;
     width:0;
     opacity: 0;
+    text-align: right;
 }
 .active{
     height: inherit;
-    width: inherit;
+    width: 200px;
     opacity: 1;
+}
+.table{
+    margin-top: 40px;
+    color:#047bd3;
+    width: 100%;
+    padding: 10px 20px;
+    height: 200px;
+    text-align: center;
+    
+}
+.table thead, .table tbody{
+    background-color: #076bf774;
+    border-radius: 20px;
+}
+.table thead th{
+    padding: 20px 30px ;
+}
+.table tbody td{
+    padding: 30px 30px;
+    letter-spacing: 1.1px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all .3s;
+}
+.table tbody td:hover{
+    background-color: #da991880;
 }
