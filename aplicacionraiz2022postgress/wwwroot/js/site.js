@@ -7,8 +7,8 @@ const Usuario= document.querySelector('.Usuario');
 const Descripcion = document.querySelector('.Descripcion');
 
 Usuario.addEventListener('mouseover',()=>{
-    Descripcion.classList.add("active");
+    Descripcion.classList.add("active123");
 })
 Usuario.addEventListener('mouseout',()=>{
-    Descripcion.classList.remove("active");
+    Descripcion.classList.remove("active123");
 })
