@@ -135,11 +135,7 @@ body {
     opacity: 0;
     text-align: right;
 }
-.active{
-    height: inherit;
-    width: 200px;
-    opacity: 1;
-}
+
 .table{
     margin-top: 40px;
     color:#047bd3;
