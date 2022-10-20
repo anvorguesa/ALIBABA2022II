@@ -135,6 +135,11 @@ body {
     opacity: 0;
     text-align: right;
 }
+.active{
+    height: inherit;
+    width: 200px;
+    opacity: 1;
+}
 .active123{
     height: inherit;
     width: 200px;
